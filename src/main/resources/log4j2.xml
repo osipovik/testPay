@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="oik.test_pay">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{36}:%line %msg%n"/>
+        </Console>
+        <RollingFile
+                name="rollingFile"
+                fileName="web_api.${date:yyyy-MM-dd}.log"
+                filePattern="web_api.%d{yyyy-MM-dd}.log"
+                immediateFlush="true">
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{36}:%line %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="oik.test_pay" level="debug" />
+
+        <Logger name="org.springframework" level="info"/>
+
+        <Logger name="org.hibernate" level="info" />
+
+        <Root level="debug">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="rollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
